@@ -2,9 +2,10 @@
 import { useSyncStore } from "./store/sync";
 
 
-const SYNC_INTERVAL = 10 * 60 * 1000; // 10分钟
+const SYNC_INTERVAL = 1 * 60 * 1000; // 10分钟
 
 function startAutoSync() {
+  console.log("[AutoSync] 启动");
   const syncStore = useSyncStore();
   if (typeof window === "undefined") {
     // 只在浏览器环境运行
