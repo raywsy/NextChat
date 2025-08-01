@@ -2,7 +2,7 @@
 import { useSyncStore } from "./store/sync";
 import { showToast } from "./components/ui-lib";
 
-const SYNC_INTERVAL = 1 * 60 * 1000; // 10分钟
+const SYNC_INTERVAL = 5 * 60 * 1000; // 10分钟
 
 function startAutoSync() {
   console.log("[AutoSync] 启动");
