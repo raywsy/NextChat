@@ -129,7 +129,7 @@ import { getAvailableClientsCount, isMcpEnabled } from "../mcp/actions";
 import startAutoSync from "../autosync";
 
 console.log("======================= Before startAutoSync");
-// startAutoSync();
+startAutoSync();
 console.log("======================= After startAutoSync");
 
 const localStorage = safeLocalStorage();
