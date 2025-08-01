@@ -13,7 +13,7 @@ function getNextHourDelay() {
   return nextHour.getTime() - now.getTime(); // 距离下一个整点的毫秒数
 }
 
-function startAutoSync() {
+function startAutoSyncAtClock() {
   console.log("[AutoSync] 启动");
   const syncStore = useSyncStore();
   if (typeof window === "undefined") return;
@@ -41,7 +41,7 @@ function startAutoSync() {
   }, delay);
 }
 
-function startAutoSync222() {
+function startAutoSync() {
   console.log("[AutoSync] 启动");
   const syncStore = useSyncStore();
   if (typeof window === "undefined") {
@@ -61,12 +61,17 @@ function startAutoSync222() {
   setInterval(async () => {
     console.log("[AutoSync] 开始自动同步...", new Date().toLocaleString());
     try {
-      await syncStore.sync();
-      showConfirm("自动同步成功!");
-      console.log("[AutoSync] 自动同步成功!", new Date().toLocaleString());
+      if (await showConfirm("是否要同步？")) {
+        await syncStore.sync();
+        showToast("自动同步成功!");
+        console.log("[AutoSync] 自动同步成功!", new Date().toLocaleString());
+      } else {
+        showToast("取消同步!");
+        console.log("[AutoSync] 自动同步成功!", new Date().toLocaleString());
+      }
     } catch (e) {
       console.error("[AutoSync] 自动同步失败:", e);
-      showConfirm("自动同步失败！！！");
+      showToast("自动同步失败！！！");
     }
   }, SYNC_INTERVAL);
 }
