@@ -126,6 +126,12 @@ import { RealtimeChat } from "@/app/components/realtime-chat";
 import clsx from "clsx";
 import { getAvailableClientsCount, isMcpEnabled } from "../mcp/actions";
 
+import startAutoSync from "../auto-sync";
+
+console.log("======================= Before startAutoSync");
+startAutoSync();
+console.log("======================= After startAutoSync");
+
 const localStorage = safeLocalStorage();
 
 const ttsPlayer = createTTSPlayer();
