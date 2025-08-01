@@ -990,10 +990,8 @@ export function ShortcutKeyModal(props: { onClose: () => void }) {
 }
 
 function _Chat() {
-  console.log("======================= Before startAutoSync");
+  // 开启自动同步功能
   startAutoSync();
-  console.log("======================= After startAutoSync");
-
   
   type RenderMessage = ChatMessage & { preview?: boolean };
 
