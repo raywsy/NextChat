@@ -19,6 +19,9 @@ import { useRef, useEffect } from "react";
 import { showConfirm } from "./ui-lib";
 import { useMobileScreen } from "../utils";
 import clsx from "clsx";
+import startAutoSync from "./auto-sync";
+
+startAutoSync();
 
 export function ChatItem(props: {
   onClick?: () => void;
