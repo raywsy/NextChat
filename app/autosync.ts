@@ -1,6 +1,6 @@
 // app/auto-sync.ts
 import { useSyncStore } from "./store/sync";
-import { showToast } from "./components/ui-lib";
+import { showToast, showConfirm } from "./components/ui-lib";
 
 const SYNC_INTERVAL = 5 * 60 * 1000; // 10分钟
 
@@ -25,11 +25,11 @@ function startAutoSync() {
     console.log("[AutoSync] 开始自动同步...", new Date().toLocaleString());
     try {
       await syncStore.sync();
-      showToast("自动同步成功!");
+      showConfirm("自动同步成功!");
       console.log("[AutoSync] 自动同步成功!", new Date().toLocaleString());
     } catch (e) {
       console.error("[AutoSync] 自动同步失败:", e);
-      showToast("自动同步失败！！！");
+      showConfirm("自动同步失败！！！");
     }
   }, SYNC_INTERVAL);
 }
