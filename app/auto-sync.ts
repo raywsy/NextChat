@@ -1,5 +1,5 @@
 // app/auto-sync.ts
-import { useSyncStore } from "../store/sync";
+import { useSyncStore } from "./store/sync";
 
 
 const SYNC_INTERVAL = 10 * 60 * 1000; // 10分钟
