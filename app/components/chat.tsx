@@ -126,11 +126,8 @@ import { RealtimeChat } from "@/app/components/realtime-chat";
 import clsx from "clsx";
 import { getAvailableClientsCount, isMcpEnabled } from "../mcp/actions";
 
+// 添加自动同步逻辑
 import startAutoSync from "../autosync";
-
-console.log("======================= Before startAutoSync");
-//startAutoSync();
-console.log("======================= After startAutoSync");
 
 const localStorage = safeLocalStorage();
 
@@ -993,6 +990,11 @@ export function ShortcutKeyModal(props: { onClose: () => void }) {
 }
 
 function _Chat() {
+  console.log("======================= Before startAutoSync");
+  startAutoSync();
+  console.log("======================= After startAutoSync");
+
+  
   type RenderMessage = ChatMessage & { preview?: boolean };
 
   const chatStore = useChatStore();
