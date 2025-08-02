@@ -61,7 +61,7 @@ function startAutoSync() {
   setInterval(async () => {
     console.log("[AutoSync] 开始自动同步...", new Date().toLocaleString());
     try {
-      if (await showConfirm("是否要同步？")) {
+      if (await showConfirm("是否要同步？" + (new Date().toLocaleString()))) {
         await syncStore.sync();
         showToast("自动同步成功!");
         console.log("[AutoSync] 自动同步成功!", new Date().toLocaleString());
