@@ -35,7 +35,7 @@ function startAutoSync() {
           text: "OK",
           onClick: () => {
           }
-        }, 20*6000);
+        }, 15*60000);
         console.log("[AutoSync] 自动同步成功!", new Date().toLocaleString());
     } catch (e) {
       console.error("[AutoSync] 自动同步失败:", e);
@@ -44,7 +44,7 @@ function startAutoSync() {
         onClick: () => {
             console.log("自动同步失败, error:", e);
         }
-      }, 30*6000);
+      }, 30*60000);
     }
   }, SYNC_INTERVAL);
 }
