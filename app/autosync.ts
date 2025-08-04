@@ -43,11 +43,10 @@ function startAutoSyncAtClock() {
 
 function startAutoSync() {
   showToast("[AutoSync] 启动", {
-    text: "Undo",
+    text: "OK",
     onClick: () => {
-      console.log("Undo clicked");
     },
-  }, 10000);
+  }, 1000);
   
   const syncStore = useSyncStore();
   if (typeof window === "undefined") {
@@ -65,19 +64,22 @@ function startAutoSync() {
   console.log(`[AutoSync] 自动同步定时器启动，每隔 ${SYNC_INTERVAL / 1000 / 60} 分钟同步一次。`);
 
   setInterval(async () => {
-    console.log("[AutoSync] 开始自动同步...", new Date().toLocaleString());
     try {
-      if (await showConfirm("是否要同步？" + (new Date().toLocaleString()))) {
         await syncStore.sync();
-        showToast("自动同步成功!");
+        showToast("自动同步成功!", {
+          text: "OK",
+          onClick: () => {
+          }
+        }, 20*6000);
         console.log("[AutoSync] 自动同步成功!", new Date().toLocaleString());
-      } else {
-        showToast("取消同步!");
-        console.log("[AutoSync] 自动同步成功!", new Date().toLocaleString());
-      }
     } catch (e) {
       console.error("[AutoSync] 自动同步失败:", e);
-      showToast("自动同步失败！！！");
+      showToast("自动同步失败！！！", {
+        text: "OK",
+        onClick: () => {
+            await showConfirm(e);
+        }
+      }, 30*6000);
     }
   }, SYNC_INTERVAL);
 }
