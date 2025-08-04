@@ -2,44 +2,7 @@
 import { useSyncStore } from "./store/sync";
 import { showToast, showConfirm } from "./components/ui-lib";
 
-const SYNC_INTERVAL = 30 * 60 * 1000; // 10分钟
-
-
-function getNextHourDelay() {
-  const now = new Date();
-  const nextHour = new Date(now);
-  nextHour.setMinutes(0, 0, 0);
-  nextHour.setHours(now.getHours() + 1);
-  return nextHour.getTime() - now.getTime(); // 距离下一个整点的毫秒数
-}
-
-function startAutoSyncAtClock() {
-  console.log("[AutoSync] 启动");
-  const syncStore = useSyncStore();
-  if (typeof window === "undefined") return;
-  if ((window as any).__autoSyncStarted) return;
-  (window as any).__autoSyncStarted = true;
-
-  async function syncWithLog() {
-    console.log("[AutoSync] 开始自动同步...", new Date().toLocaleString());
-    try {
-      await syncStore.sync();
-      console.log("[AutoSync] 自动同步成功!", new Date().toLocaleString());
-    } catch (e) {
-      console.error("[AutoSync] 自动同步失败:", e);
-    }
-  }
-
-  // 首次延迟到下一个整点
-  const delay = getNextHourDelay();
-  console.log(`[AutoSync] 距离下一个整点还有 ${Math.round(delay / 1000)} 秒`);
-
-  setTimeout(function tick() {
-    syncWithLog();
-    // 后续每小时执行一次
-    setTimeout(tick, 60 * 60 * 1000);
-  }, delay);
-}
+const SYNC_INTERVAL = 30 * 60 * 1000; // 30分钟
 
 function startAutoSync() {
   showToast("[AutoSync] 启动", {
