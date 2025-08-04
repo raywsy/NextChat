@@ -42,7 +42,13 @@ function startAutoSyncAtClock() {
 }
 
 function startAutoSync() {
-  console.log("[AutoSync] 启动");
+  showToast("[AutoSync] 启动", {
+    text: "Undo",
+    onClick: () => {
+      console.log("Undo clicked");
+    },
+  }, 10000);
+  
   const syncStore = useSyncStore();
   if (typeof window === "undefined") {
     // 只在浏览器环境运行
