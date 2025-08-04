@@ -14,7 +14,7 @@ export function createWebDavClient(store: SyncStore) {
   return {
     async check() {
       try {
-        const res = await fetch(this.path(folder, proxyUrl, "GET"), {
+        const res = await fetch(this.path(folder, proxyUrl, "MKCOL"), {
           method: "GET",
           headers: this.headers(),
         });
