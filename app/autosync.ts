@@ -5,12 +5,7 @@ import { showToast, showConfirm } from "./components/ui-lib";
 const SYNC_INTERVAL = 30 * 60 * 1000; // 30分钟
 
 function startAutoSync() {
-  showToast("[AutoSync] 启动", {
-    text: "OK",
-    onClick: () => {
-    },
-  }, 1000);
-  
+
   const syncStore = useSyncStore();
   if (typeof window === "undefined") {
     // 只在浏览器环境运行
@@ -23,6 +18,13 @@ function startAutoSync() {
     return;
   }
   (window as any).__autoSyncStarted = true;
+
+    showToast("[AutoSync] 启动", {
+    text: "OK",
+    onClick: () => {
+    },
+  }, 1000);
+  
 
   console.log(`[AutoSync] 自动同步定时器启动，每隔 ${SYNC_INTERVAL / 1000 / 60} 分钟同步一次。`);
 
