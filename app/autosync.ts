@@ -77,7 +77,7 @@ function startAutoSync() {
       showToast("自动同步失败！！！", {
         text: "OK",
         onClick: () => {
-            await showConfirm(e);
+            showToast("error:", e);
         }
       }, 30*6000);
     }
