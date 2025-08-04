@@ -2,7 +2,7 @@
 import { useSyncStore } from "./store/sync";
 import { showToast, showConfirm } from "./components/ui-lib";
 
-const SYNC_INTERVAL = 60 * 60 * 1000; // 10分钟
+const SYNC_INTERVAL = 30 * 60 * 1000; // 10分钟
 
 
 function getNextHourDelay() {
