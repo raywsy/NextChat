@@ -22,7 +22,7 @@ function startAutoSync() {
   }, 1000);
   const syncStore = useSyncStore();
   
-  console.log(`[AutoSync] 自动同步定时器启动，每隔 ${SYNC_INTERVAL / 1000 / 60} 分钟同步一次，${new Date().toLocaleString()}`);
+  console.log(`[AutoSync] 自动同步定时器启动，每隔 ${SYNC_INTERVAL / 1000 / 60} 分钟同步一次`);
   setInterval(async () => {
     try {
         await syncStore.sync();
