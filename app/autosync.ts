@@ -26,7 +26,7 @@ function startAutoSync() {
   setInterval(async () => {
     try {
         await syncStore.sync();
-        showToast("自动同步成功!", {
+        showToast("自动同步成功，" + (new Date().toLocaleString()), {
           text: "OK",
           onClick: () => {
           }
