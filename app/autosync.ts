@@ -11,23 +11,18 @@ function startAutoSync() {
     // 只在浏览器环境运行
     return;
   }
-
   // 防止重复启动多个定时器
   if ((window as any).__autoSyncStarted) {
     console.log("[AutoSync] 已经启动过定时同步任务，跳过。");
     return;
   }
   (window as any).__autoSyncStarted = true;
-
-    showToast("[AutoSync] 启动", {
+  showToast("[AutoSync] 启动", {
     text: "OK",
     onClick: () => {
     },
   }, 1000);
-  
-
   console.log(`[AutoSync] 自动同步定时器启动，每隔 ${SYNC_INTERVAL / 1000 / 60} 分钟同步一次。`);
-
   setInterval(async () => {
     try {
         await syncStore.sync();
